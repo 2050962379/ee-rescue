@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电子信息自救资料库｜模电期末 7 天急救</title>
+<meta name="description" content="电子信息大学生的自救资料库：模电、数电、STM32、考研。免费保存，不用加好友。">
+<style>
+:root{
+  --ink:#061711;
+  --ink-2:#0b241a;
+  --green:#0b3d2e;
+  --green-2:#13543d;
+  --paper:#f2efe4;
+  --paper-2:#e9e4d4;
+  --acid:#d7ff3f;
+  --yellow:#ffd166;
+  --orange:#ff7a3d;
+  --muted:#9fb3a8;
+  --line:rgba(242,239,228,.18);
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;max-width:100%;overflow-x:hidden}
+body{max-width:100%;overflow-x:hidden}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(900px 500px at 80% -10%, rgba(215,255,63,.12), transparent 65%),
+    radial-gradient(700px 500px at -10% 35%, rgba(255,209,102,.08), transparent 60%),
+    linear-gradient(180deg,#061711 0%,#071b14 55%,#04100b 100%);
+}
+body::after{
+  content:"";
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.28;
+  background-image:
+    linear-gradient(rgba(242,239,228,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(242,239,228,.06) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,.2) 70%,transparent);
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.topbar{
+  position:sticky;top:0;z-index:40;
+  backdrop-filter:blur(14px);
+  background:rgba(6,23,17,.72);
+  border-bottom:1px solid var(--line);
+}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Songti SC","Noto Serif CJK SC",serif;font-weight:700;letter-spacing:.08em}
+.brand-mark{
+  width:34px;height:34px;border:1px solid var(--acid);border-radius:8px;
+  display:grid;place-items:center;color:var(--acid);font-family:ui-monospace,monospace;font-size:11px;
+  box-shadow:0 0 24px rgba(215,255,63,.15);
+}
+.nav-links{display:flex;gap:26px;font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--acid)}
+.nav-cta{
+  border:1px solid var(--acid);color:var(--acid);padding:9px 16px;border-radius:999px;
+  font-size:13px;font-weight:600;transition:.25s;
+}
+.nav-cta:hover{background:var(--acid);color:var(--ink)}
+
+.hero{padding:64px 0 42px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center;min-height:560px}
+.hero-grid>*{min-width:0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;color:var(--acid);
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:22px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--acid);display:block}
+h1{
+  font-family:"Songti SC","Noto Serif CJK SC",STSong,serif;
+  font-size:clamp(54px,8.2vw,108px);
+  line-height:.98;letter-spacing:-.045em;font-weight:900;
+}
+h1 .dim{color:transparent;-webkit-text-stroke:1px rgba(242,239,228,.42)}
+h1 .mark{
+  position:relative;display:inline-block;color:var(--ink);background:var(--acid);
+  padding:0 .08em;transform:rotate(-1.2deg);box-shadow:6px 6px 0 rgba(215,255,63,.14);
+}
+.hero-sub{
+  margin-top:28px;max-width:520px;color:#c9d7cf;font-size:17px;line-height:1.9;
+  overflow-wrap:anywhere;
+}
+.hero-sub strong{color:var(--paper);font-weight:700}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:0 24px;border-radius:6px;font-weight:700;font-size:14px;transition:.22s;
+  border:1px solid transparent;
+}
+.btn-primary{background:var(--acid);color:var(--ink);box-shadow:0 12px 32px rgba(215,255,63,.16)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(215,255,63,.24)}
+.btn-ghost{border-color:var(--line);color:var(--paper)}
+.btn-ghost:hover{border-color:var(--acid);color:var(--acid)}
+.hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:32px;font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);letter-spacing:.08em}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta i{width:6px;height:6px;background:var(--acid);display:block;border-radius:50%;box-shadow:0 0 12px var(--acid)}
+
+.chip-stage{position:relative;min-height:460px;display:grid;place-items:center;width:100%;overflow:hidden}
+.chip-glow{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(215,255,63,.15),transparent 65%);filter:blur(8px)}
+.chip{
+  width:min(360px,90%);aspect-ratio:1;border:1px solid rgba(215,255,63,.42);
+  border-radius:18px;background:linear-gradient(145deg,rgba(11,61,46,.92),rgba(6,23,17,.96));
+  position:relative;box-shadow:0 40px 90px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.04);
+  transform:rotate(3deg);
+}
+.chip::before,.chip::after{
+  content:"";position:absolute;inset:18px;border:1px dashed rgba(215,255,63,.2);border-radius:10px;
+}
+.chip::after{inset:34px;border-style:solid;border-color:rgba(242,239,228,.08)}
+.chip-core{
+  position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
+  width:132px;height:132px;border:1px solid var(--acid);border-radius:12px;
+  display:grid;place-items:center;text-align:center;background:rgba(215,255,63,.06);
+}
+.chip-core b{font-family:ui-monospace,monospace;color:var(--acid);font-size:12px;letter-spacing:.12em;display:block}
+.chip-core em{font-family:"Songti SC",serif;font-style:normal;font-size:33px;line-height:1.1;display:block;margin-top:5px}
+.pin{position:absolute;background:rgba(242,239,228,.18)}
+.pin.h{height:1px;width:46px;top:50%}
+.pin.v{width:1px;height:46px;left:50%}
+.pin.h.l{left:-23px}.pin.h.r{right:-23px}
+.pin.v.t{top:-23px}.pin.v.b{bottom:-23px}
+.chip-label{
+  position:absolute;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);
+}
+.chip-label.tl{top:26px;left:26px}.chip-label.tr{top:26px;right:26px;text-align:right}
+.chip-label.bl{bottom:26px;left:26px}.chip-label.br{bottom:26px;right:26px;text-align:right}
+.chip-label b{display:block;color:var(--paper);font-size:12px;margin-top:2px}
+.floating-note{
+  position:absolute;right:-2px;bottom:14px;background:var(--paper);color:var(--ink);
+  padding:12px 16px;border-radius:4px;font-size:12px;font-weight:700;transform:rotate(-3deg);
+  box-shadow:8px 8px 0 rgba(0,0,0,.25);
+}
+.floating-note span{display:block;font-family:ui-monospace,monospace;font-size:9px;color:var(--green-2);letter-spacing:.1em;margin-bottom:2px}
+
+.ticker{border-block:1px solid var(--line);overflow:hidden;background:rgba(242,239,228,.02)}
+.ticker-track{display:flex;gap:42px;width:max-content;padding:14px 0;animation:tick 26s linear infinite}
+.ticker span{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);letter-spacing:.14em;white-space:nowrap}
+.ticker span b{color:var(--acid);font-weight:500}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+.section{padding:96px 0}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:38px}
+.kicker{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.16em;color:var(--acid);text-transform:uppercase;margin-bottom:10px}
+h2{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:clamp(34px,4.5vw,56px);line-height:1.08;letter-spacing:-.03em;font-weight:900}
+.section-head p{max-width:400px;color:var(--muted);font-size:14px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}
+.stat{padding:26px 24px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{font-family:"Songti SC",serif;font-size:42px;line-height:1;display:block}
+.stat span{display:block;color:var(--muted);font-size:12px;margin-top:10px;letter-spacing:.06em}
+
+.resources{display:grid;grid-template-columns:1.18fr .82fr .82fr;gap:16px}
+.card{
+  position:relative;border:1px solid var(--line);background:linear-gradient(180deg,rgba(242,239,228,.045),rgba(242,239,228,.015));
+  padding:30px;min-height:360px;display:flex;flex-direction:column;transition:.25s;overflow:hidden;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(215,255,63,.55);background:rgba(215,255,63,.035)}
+.card .num{font-family:ui-monospace,monospace;font-size:11px;color:var(--acid);letter-spacing:.12em}
+.card h3{font-family:"Songti SC",serif;font-size:30px;line-height:1.25;margin-top:24px;font-weight:800}
+.card .desc{color:#b9c9c0;font-size:13px;line-height:1.8;margin-top:14px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.tag{border:1px solid var(--line);padding:4px 9px;border-radius:999px;font-size:10px;color:var(--muted)}
+.card .spacer{flex:1}
+.card .card-cta{display:flex;align-items:center;justify-content:space-between;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;font-weight:700}
+.card .card-cta span{color:var(--acid)}
+.card.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.card.primary .num{color:var(--green-2)}
+.card.primary .desc{color:#3f554a}
+.card.primary .tag{border-color:rgba(11,61,46,.25);color:var(--green-2)}
+.card.primary .card-cta{border-color:rgba(11,61,46,.18)}
+.card.primary .card-cta span{color:var(--green-2)}
+.card.primary::after{
+  content:"CORE";position:absolute;top:18px;right:18px;background:var(--acid);color:var(--ink);
+  font-family:ui-monospace,monospace;font-size:9px;letter-spacing:.1em;padding:5px 8px;font-weight:700;
+}
+.card.locked{opacity:.72}
+.card.locked:hover{opacity:1}
+
+.manifesto{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.manifesto h2{max-width:440px}
+.manifesto-copy p{color:#c6d4cc;font-size:15px;line-height:1.95;margin-bottom:18px}
+.manifesto-copy strong{color:var(--acid);font-weight:600}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:54px}
+.step{background:var(--ink);padding:30px 26px}
+.step b{font-family:ui-monospace,monospace;font-size:11px;color:var(--acid);display:block;margin-bottom:18px;letter-spacing:.1em}
+.step h4{font-family:"Songti SC",serif;font-size:21px;margin-bottom:9px}
+.step p{color:var(--muted);font-size:13px;line-height:1.75}
+
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:23px 0}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-size:17px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--acid);font-family:ui-monospace,monospace;font-size:22px;line-height:1;transition:.2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--muted);font-size:14px;line-height:1.9;max-width:820px;margin-top:14px}
+
+.final{
+  margin:80px 0 0;border:1px solid rgba(215,255,63,.35);background:linear-gradient(135deg,rgba(215,255,63,.1),rgba(11,61,46,.25));
+  padding:58px 48px;display:flex;justify-content:space-between;gap:30px;align-items:center;
+}
+.final h2{font-size:clamp(30px,4vw,48px);max-width:620px}
+.final p{color:#c6d4cc;font-size:14px;margin-top:12px}
+.footer{padding:34px 0 46px;border-top:1px solid var(--line);margin-top:80px;color:#7f9289;font-size:12px}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer a{color:#a9bbb1}
+.footer a:hover{color:var(--acid)}
+
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--acid);color:var(--ink);
+  padding:11px 18px;border-radius:4px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:80;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:26px;min-height:auto}
+  .chip-stage{min-height:380px;order:-1}
+  .chip{width:300px}
+  .resources{grid-template-columns:1fr 1fr}
+  .card.primary{grid-column:1/-1;min-height:300px}
+  .manifesto{grid-template-columns:1fr;gap:20px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .steps{grid-template-columns:1fr}
+  .final{flex-direction:column;align-items:flex-start;padding:38px 28px}
+}
+@media(max-width:620px){
+  .wrap{width:calc(100% - 30px)}
+  .nav-cta{display:none}
+  .floating-note{display:none}
+  .nav-links{display:none}
+  .hero{padding-top:36px}
+  h1{font-size:clamp(50px,16vw,78px)}
+  .hero-sub{font-size:15px}
+  .hero-meta{gap:12px}
+  .resources{grid-template-columns:1fr}
+  .card{min-height:300px}
+  .section{padding:70px 0}
+  .section-head{flex-direction:column;align-items:flex-start}
+  .final{margin-top:50px}
+  .footer-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="brand-mark">EE</span><span>自救资料库</span></a>
+    <div class="nav-links">
+      <a href="#resources">资料包</a>
+      <a href="#why">为什么免费</a>
+      <a href="#how">怎么用</a>
+      <a href="#faq">常见问题</a>
+    </div>
+    <a class="nav-cta" href="#resources">免费领取</a>
+  </div>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">电子信息 · 期末自救计划</div>
+        <h1>模电期末<br><span class="dim">别再</span><span class="mark">从头</span><br>看书。</h1>
+        <p class="hero-sub">把 <strong>921 行模电笔记</strong>、10 道必会题和 3 套自测卷，压成一条 <strong>7 天急救路线</strong>。给期末只剩一两周、不知道从哪开始的电子信息学生。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#resources">获取 7 天急救包 <span>↗</span></a>
+          <a class="btn btn-ghost" href="#how">先看怎么用</a>
+        </div>
+        <div class="hero-meta">
+          <span><i></i> 免费保存</span>
+          <span><i></i> 不用加好友</span>
+          <span><i></i> 持续更新</span>
+        </div>
+      </div>
+
+      <div class="chip-stage" aria-hidden="true">
+        <div class="chip-glow"></div>
+        <div class="chip">
+          <span class="chip-label tl">SUBJECT<b>MOD / ELEC</b></span>
+          <span class="chip-label tr">MODE<b>7 DAYS</b></span>
+          <span class="chip-label bl">TARGET<b>60 PTS</b></span>
+          <span class="pin h l"></span><span class="pin h r"></span>
+          <span class="pin v t"></span><span class="pin v b"></span>
+          <div class="chip-core"><div><b>EE / RESCUE</b><em>7<br>天</em></div></div>
+        </div>
+        <div class="floating-note"><span>NO LOGIN / NO DM</span>直接存，不用问</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span><b>模电</b> 二极管 / BJT / 放大电路</span>
+      <span><b>数电</b> 组合逻辑 / 时序逻辑 / 状态机</span>
+      <span><b>嵌入式</b> STM32 / GPIO / 串口 / 定时器</span>
+      <span><b>工具</b> LaTeX / Python / 实验报告</span>
+      <span><b>模电</b> 二极管 / BJT / 放大电路</span>
+      <span><b>数电</b> 组合逻辑 / 时序逻辑 / 状态机</span>
+      <span><b>嵌入式</b> STM32 / GPIO / 串口 / 定时器</span>
+      <span><b>工具</b> LaTeX / Python / 实验报告</span>
+    </div>
+  </div>
+
+  <section class="section" id="resources">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">01 / RESOURCE PACKS</div>
+          <h2>先拿最痛的那一份。</h2>
+        </div>
+        <p>不用全存。先选你这两周最需要的，保存后按里面的路线用。资料会持续补。</p>
+      </div>
+
+      <div class="resources">
+        <article class="card primary reveal">
+          <div class="num">PACK 01 / CORE</div>
+          <h3>模电期末<br>7 天急救包</h3>
+          <p class="desc">给期末只剩 1-2 周、从第一页看书已经来不及的人。路线图、公式表、冲刺笔记、必会题、自测卷，一套解决“先看什么”。</p>
+          <div class="tags"><span class="tag">7 天路线</span><span class="tag">921 行笔记</span><span class="tag">10 道必会题</span><span class="tag">3 套自测</span></div>
+          <div class="spacer"></div>
+          <a class="card-cta netdisk-link" data-platform="quark" href="#" target="_blank" rel="noopener"><span>免费保存到夸克网盘</span><b>↗</b></a>
+        </article>
+
+        <article class="card locked reveal">
+          <div class="num">PACK 02 / NEXT</div>
+          <h3>数电期末<br>3 天速通</h3>
+          <p class="desc">组合逻辑、时序逻辑、计数器、状态机、ADC/DAC。先抓五类题，不再按章节平均用力。</p>
+          <div class="tags"><span class="tag">3 天路线</span><span class="tag">五大题型</span><span class="tag">2 套自测</span></div>
+          <div class="spacer"></div>
+          <div class="card-cta" style="opacity:.55"><span>即将上线</span><b>—</b></div>
+        </article>
+
+        <article class="card locked reveal">
+          <div class="num">PACK 03 / BUILD</div>
+          <h3>STM32 入门<br>30 天路线</h3>
+          <p class="desc">不急着点灯。先搞懂时钟、GPIO、寄存器和调试，再用模板代码做第一个最小项目。</p>
+          <div class="tags"><span class="tag">30 天任务</span><span class="tag">GPIO / 串口</span><span class="tag">代码模板</span></div>
+          <div class="spacer"></div>
+          <div class="card-cta" style="opacity:.55"><span>即将上线</span><b>—</b></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why" style="padding-top:40px">
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><b>921</b><span>行模电冲刺笔记</span></div>
+        <div class="stat"><b>10</b><span>道期末必会题</span></div>
+        <div class="stat"><b>3</b><span>套自测卷</span></div>
+        <div class="stat"><b>7</b><span>天急救路线</span></div>
+      </div>
+
+      <div class="manifesto" style="margin-top:64px">
+        <div class="reveal">
+          <div class="kicker">02 / WHY FREE</div>
+          <h2>为什么<br>免费？</h2>
+        </div>
+        <div class="manifesto-copy reveal">
+          <p>因为资料本来就是我期末复习时整理的。放在网盘里，<strong>你通过链接保存，我会有平台的推广奖励</strong>，不需要你额外付钱。</p>
+          <p>所以这里不放二维码、不强制加微信、不搞转发集赞。你直接点，直接存。觉得有用，就按路线认真看；觉得没用，关掉也不欠我什么。</p>
+          <p><strong>我唯一的要求：先看路线图，不要从第一页开始啃。</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" style="padding-top:40px">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">03 / HOW TO USE</div>
+          <h2>三步，十分钟。</h2>
+        </div>
+        <p>不需要注册网站，不需要留手机号。网盘里先存，再按顺序看。</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <b>STEP 01</b>
+          <h4>选一份</h4>
+          <p>先拿“模电急救包”。其他资料等你真的需要再存，不要让网盘变成垃圾场。</p>
+        </div>
+        <div class="step">
+          <b>STEP 02</b>
+          <h4>存到网盘</h4>
+          <p>点按钮，保存到你的网盘。建议在手机上打开一次，确认能预览、能下载。</p>
+        </div>
+        <div class="step">
+          <b>STEP 03</b>
+          <h4>按路线用</h4>
+          <p>先看 00 使用说明和 7 天路线图。每天只做当天任务，不要跳着看。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" style="padding-top:40px">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">04 / FAQ</div>
+          <h2>你可能想问。</h2>
+        </div>
+      </div>
+      <div class="faq reveal">
+        <details open>
+          <summary>真的免费吗？</summary>
+          <p>免费。资料通过网盘链接保存，你不需要付钱；我获得的是网盘平台的推广奖励。你如果以后开会员，平台会给我一点分成，但不开也完全不影响使用。</p>
+        </details>
+        <details>
+          <summary>为什么一定要用网盘？</summary>
+          <p>因为 PDF、图片和代码模板放在网盘里更新最方便，你也不用留邮箱或手机号。保存后可以长期看，链接失效我会在评论区补。</p>
+        </details>
+        <details>
+          <summary>资料是哪个学校的？准不准？</summary>
+          <p>是通用版，按国内《模拟电子技术基础》常见教学体系整理，不是某校官方资料。期末请以你们老师的课件、考试范围为准；发现错误欢迎指出，我会更新。</p>
+        </details>
+        <details>
+          <summary>会强制加微信或进群吗？</summary>
+          <p>不会。这个页面就是全部入口。没有“转发截图领取”，也没有“加好友发密码”。你直接保存就行。</p>
+        </details>
+        <details>
+          <summary>后面还会更新吗？</summary>
+          <p>会。计划补数电速通、STM32 入门、实验报告 LaTeX 模板。更新会写进网盘里的“更新日志”，也会在主页发公告。</p>
+        </details>
+      </div>
+
+      <div class="final reveal">
+        <div>
+          <div class="kicker">START HERE</div>
+          <h2>期末只剩 7 天，<br>先做对的那 3 件事。</h2>
+          <p>不用买课，不用加群。把路线图存下来，今晚就开始。</p>
+        </div>
+        <a class="btn btn-primary netdisk-link" data-platform="quark" href="#" target="_blank" rel="noopener">免费保存急救包 <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-row">
+    <div>电子信息自救资料库 · 个人学习整理，非官方资料</div>
+    <div>链接失效 / 内容纠错：请在主页最新内容下留言 · <a href="#top">回到顶部</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">已复制提取码</div>
+
+<script>
+const NETDISK = {
+  quark: { url: "https://pan.quark.cn/s/116721434e21", code: "" },
+  uc:    { url: "UC_LINK",    code: "UC_CODE" },
+  baidu: { url: "BAIDU_LINK", code: "BAIDU_CODE" }
+};
+
+document.querySelectorAll(".netdisk-link").forEach(function(el){
+  const key = el.getAttribute("data-platform");
+  const item = NETDISK[key];
+  if(item && item.url && item.url.indexOf("LINK") === -1){
+    el.setAttribute("href", item.url);
+    el.setAttribute("data-code", item.code || "");
+    el.addEventListener("click", function(){
+      if(item.code && navigator.clipboard){
+        navigator.clipboard.writeText(item.code).then(function(){
+          const t = document.getElementById("toast");
+          t.textContent = "提取码 " + item.code + " 已复制";
+          t.classList.add("show");
+          setTimeout(function(){ t.classList.remove("show"); }, 1800);
+        }).catch(function(){});
+      }
+    });
+  } else {
+    el.addEventListener("click", function(e){
+      e.preventDefault();
+      const t = document.getElementById("toast");
+      t.textContent = "请先在 index.html 顶部填入网盘链接";
+      t.classList.add("show");
+      setTimeout(function(){ t.classList.remove("show"); }, 2200);
+    });
+  }
+});
+
+const io = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.classList.add("in");
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>
